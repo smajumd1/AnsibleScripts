@@ -1,5 +1,5 @@
 ---
-- host: Add
+- hosts: AD
   tasks: 
   - name: Copy Notepad from source to destination location
     win_copy: 
