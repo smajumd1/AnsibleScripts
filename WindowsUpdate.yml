@@ -1,0 +1,17 @@
+---
+- hosts: AD
+  tasks: 
+  - name: Copy script file from Source to destination
+    win_copy: 
+     src: C:\Scripts\WIN.OS.SCRIPTS\
+     dest: C:\SCRIPTS\WIN
+  - name: Copy the WindowsUpdate script
+    win_copy: 
+     scr: U:\Sources\Powershell\PSWindowsUpdate\
+     dest: C:\Windows\System32\WindowsPowerShell\v1.0\Modules
+  - name: Run \Powershell
+    win_command: powershell.exe -ExecutionPolicy ByPass -File S:\SCRIPTS\WIN\WIN.OS.SCRIPTS\WIN-OS-windowsUpdate.ps1
+  - name: Remove Script folder
+    ansible.windows.win_file: 
+      path: S:\SCRIPTS\
+      state: absent
