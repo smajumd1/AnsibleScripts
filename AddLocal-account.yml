@@ -1,13 +1,20 @@
 ---
 - host: AD
-- name: Add local account to server
-  ansible.windows.win_user:
-    fullname: Bob Biswas
-    name: bob
-    password: B0bP4ssw0rd
-    user_cannot_change_password: false
-    password_never_expires: true
-    update_password: on_create
+  tasks: 
+  - name: Add local group
+    ansible.windows.win_group: 
+    name: bobuser
+    description: Special Group for bob
     state: present
-    groups:
-      - Users
+
+  - name: Add local user to group bobuser
+    ansible.windows.win_user:
+      fullname: Bob Biswas
+      name: bob
+      password: B0bP4ssw0rd
+      user_cannot_change_password: false
+      password_never_expires: true
+      update_password: on_create
+      state: present
+      groups:
+        - bobuser
