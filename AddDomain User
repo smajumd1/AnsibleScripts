@@ -1,0 +1,21 @@
+---
+- hosts: AD
+  tasks: 
+  - name: Add a user to existing domain
+    community.windows.win_domain_user: 
+    name: bob
+    fisrtname: Bob
+    surname: Biswas
+    company: Bosco
+    password: Pass1234
+    state: present
+    path: ou=test, dc=testdomain, dc=local
+    groups: 
+      - test
+    street: 123 sent jons
+    city: sametown
+    state_province: IN
+    postal_code: 711109
+    country: mars
+    attributes: 
+      telephoneNumber: 123456789  
